@@ -9,11 +9,11 @@ app = FastAPI()
 
 DATA_FILE = "data.json"
 
-# מודל לקבלת JSON
+# JSON model
 class Payload(BaseModel):
     data: Dict[str, Any]
 
-# פונקציה לקריאת נתונים
+# Function to read data
 def read_data() -> List[Dict[str, Any]]:
     if not os.path.exists(DATA_FILE):
         return []
@@ -23,7 +23,7 @@ def read_data() -> List[Dict[str, Any]]:
         except json.JSONDecodeError:
             return []
 
-# פונקציה לכתיבת נתונים
+# Function to write data
 def write_data(data: List[Dict[str, Any]]):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -32,7 +32,7 @@ def write_data(data: List[Dict[str, Any]]):
 @app.post("/append")
 def append_payload(payload: Payload):
     data = read_data()
-    # מוסיפים תאריך ושעה אוטומטית
+    # Add timestamp automatically
     entry = {
         "timestamp": datetime.now().isoformat(),
         "data": payload.data
@@ -45,4 +45,5 @@ def append_payload(payload: Payload):
 @app.get("/last")
 def get_last_entries():
     data = read_data()
-    return data[-10:]  # מחזיר את 10 הרשומות האחרונות
+    return data[-10:]      # Return the last 10 records
+
