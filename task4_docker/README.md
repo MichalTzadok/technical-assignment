@@ -7,4 +7,4 @@ The Dockerfile sets an entrypoint to verify the installation by printing the ffm
 ## How to Build
 
 ```bash
-docker build -t task4-ffmpeg .
+docker build -t task4-docker .
