@@ -7,7 +7,7 @@ This task implements a simple FastAPI server with two endpoints:
 
 ## Endpoints
 
-### POST /add
+### POST /append
 Receives a JSON object and stores it in a local file.
 The server saves the data to a local JSON file (data.json).
 
